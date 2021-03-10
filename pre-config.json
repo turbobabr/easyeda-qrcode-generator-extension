@@ -1,5 +1,5 @@
-{
-  "authorName": "${authorName}",
-  "repo": "${repo}",
-  "user": "${user}"  
+{  
+  "repo": "easyeda-qrcode-generator-extension",
+  "user": "turbobabr",
+  "authorName": "Andrey Shakhmin"
 }

@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/${user}/${repo}.git"
+    "url": "git+https://github.com/turbobabr/easyeda-qrcode-generator-extension.git"
   },
-  "author": "${authorName}",
+  "author": "Andrey Shakhmin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/${user}/${repo}/issues"
+    "url": "https://github.com/turbobabr/easyeda-qrcode-generator-extension/issues"
   },
-  "homepage": "https://github.com/${user}/${repo}#readme",
+  "homepage": "https://github.com/turbobabr/easyeda-qrcode-generator-extension#readme",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
@@ -52,14 +52,16 @@
     "webpack-watch-files-plugin": "^1.1.0"
   },
   "easy": {
-    "name": "Extension name",
-    "id": "extensionid",
-    "description": "Extension description",
-    "homepage": "https://github.com/${user}/${repo}#readme",
-    "username": "${user}",
-    "repo": "${repo}"
+    "name": "QRCode",
+    "id": "qrcode",
+    "description": "Helps you to quickly create a silk screen QRCode",
+    "homepage": "https://github.com/turbobabr/easyeda-qrcode-generator-extension#readme",
+    "username": "turbobabr",
+    "repo": "easyeda-qrcode-generator-extension",
+    "archiveFileName": "qrcode-generator"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "qr.js": "0.0.0"
   }
 }
