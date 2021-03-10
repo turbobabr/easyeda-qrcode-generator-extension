@@ -14,6 +14,20 @@ let state = {
   size: null
 };
 
+const isCurrentStateValid = () => {
+  return !isStringEmpty(state.content) && state.size !== null;
+};
+
+const updatePlaceButton = () => {
+  const isValid = isCurrentStateValid();  
+  const el = $('a[cmd^="extension-qrcode-place;dialog-close"]');  
+  if(isValid) {
+    el.addClass('force-enabled');          
+  } else {      
+    el.removeClass('force-enabled');    
+  }    
+}
+
 const updateQRCodePreview = (value) => {    
   const emptyStateContainer = $('#qrcode-preview-empty-state-container');
   const svgContainer = $('#qrcode-preview-svg-container');
@@ -45,7 +59,7 @@ export const createSettingsDialog = (actionCommandId) => {
       cmd: [actionCommandId,'dialog-close'].join(';')
     }, {
       text: 'Cancel',
-      cmd: 'dialog-close'
+      cmd: 'dialog-close;qrcode-fake-close-cmd'
     }]
   });
 
@@ -53,30 +67,33 @@ export const createSettingsDialog = (actionCommandId) => {
     const value = e.originalEvent.target.value;
     state.content = value;
     updateQRCodePreview(value);
+    updatePlaceButton();
   });
 
   $('#qrcode-size-input').on('input',(e) => {  
     const value = e.originalEvent.target.value;
     state.size = parseUnitBasedValue(value)
 
-    console.log('size',state.value);
+    updatePlaceButton();
   });
 
   updateQRCodePreview();
+  updatePlaceButton();
   cachedDialog = dlg;
 
   return dlg;
 }
 
 export const resetState = () => {
-  $('#qrcode-size-input').val("");
-  $('#qrcode-content-textarea').val("");
-  updateQRCodePreview();
-
   state = {
     content: '',
     size: null
   };
+
+  $('#qrcode-size-input').val("");
+  $('#qrcode-content-textarea').val("");
+  updateQRCodePreview();
+  updatePlaceButton();
 };
 
 export const focusOnFirstInput = () => {

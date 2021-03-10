@@ -16,8 +16,7 @@ const generateCommandHandler = (extensionId) => {
 };
 
 const placeCommandHandler = () => {  
-  const props = UI.getProps();  
-  console.log(props);
+  const props = UI.getProps();    
   importPath(generatePath(props.content, props.size));
 };
 
