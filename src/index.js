@@ -1,18 +1,28 @@
-import { generatePath, ErrorCorrectLevel } from './generator';
-import { mm2pixel, mil2pixel, inch2pixel } from './units';
+import { generatePath } from './generator';
+import * as UI from './UI/ui';
 
 const importPath = (d) => {
-  api('editorCall',{ 
-    cmd:'importByPathD', 
-    args:[d]
+  api('editorCall', {
+    cmd: 'importByPathD',
+    args: [d]
   });
 };
 
-const generateCommandHandler = () => {    
-  importPath(generatePath('Hello World!', mm2pixel(20)),{
-    typeNumber: 5,
-    errorCorrectLevel: ErrorCorrectLevel.H
-  });
+const generateCommandHandler = (extensionId) => {
+  UI.createSettingsDialog(buildCmdId(extensionId, 'place'));
+  UI.resetState();
+  UI.show();
+  UI.focusOnFirstInput();
+};
+
+const placeCommandHandler = () => {  
+  const props = UI.getProps();  
+  console.log(props);
+  importPath(generatePath(props.content, props.size));
+};
+
+const aboutCommandHandler = () => {
+  window.open('https://github.com/turbobabr/easyeda-qrcode-generator-extension', '_blank');
 };
 
 const buildCmdId = (extensionId, id) => {
@@ -20,39 +30,37 @@ const buildCmdId = (extensionId, id) => {
 };
 
 const initCommandHandlers = (extensionId) => {
-  const cmd = (id, fn) => {    
+  const cmd = (id, fn) => {
     return {
       [buildCmdId(extensionId, id)]: fn
     };
   };
 
   api('createCommand', {
-    ...cmd('generate',generateCommandHandler),
-    ...cmd('about',() => {
-      window.open('https://github.com/turbobabr/easyeda-qrcode-generator-extension','_blank');
-    })    
+    ...cmd('generate', () => { generateCommandHandler(extensionId); }),
+    ...cmd('place', placeCommandHandler),
+    ...cmd('about', aboutCommandHandler)
   });
 };
 
 const initToolbarButton = (extensionId) => {
-  api('createToolbarButton',{
+  api('createToolbarButton', {
     title: 'QRCode',
     fordoctype: 'pcb',
-    menu: [
-      {
+    menu: [{
         text: 'Generate...',
-        cmd: buildCmdId(extensionId,'generate')        
+        cmd: buildCmdId(extensionId, 'generate')
       },
       '-',
       {
         text: 'About...',
-        cmd: buildCmdId(extensionId,'about')        
+        cmd: buildCmdId(extensionId, 'about')
       }
     ]
   });
 };
 
-((extensionId) => {  
+((extensionId) => {
   initCommandHandlers(extensionId);
   initToolbarButton(extensionId);
 })('qrcode');

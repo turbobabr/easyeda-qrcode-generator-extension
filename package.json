@@ -41,6 +41,7 @@
     "gulp-load-plugins": "^2.0.6",
     "gulp-modify-file": "^1.0.1",
     "gulp-zip": "^5.0.2",
+    "html-loader": "^2.1.2",
     "klaw-sync": "^6.0.0",
     "sass": "^1.32.5",
     "sass-loader": "^10.1.1",
@@ -62,6 +63,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
+    "parse-unit": "^1.0.1",
     "qr.js": "0.0.0"
   }
 }
