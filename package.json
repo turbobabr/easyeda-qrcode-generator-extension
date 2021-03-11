@@ -55,7 +55,7 @@
   "easy": {
     "name": "QRCode",
     "id": "qrcode",
-    "description": "Helps you to quickly create a silk screen QRCode",
+    "description": "Helps you to quickly create a QRCode",
     "homepage": "https://github.com/turbobabr/easyeda-qrcode-generator-extension#readme",
     "username": "turbobabr",
     "repo": "easyeda-qrcode-generator-extension",
