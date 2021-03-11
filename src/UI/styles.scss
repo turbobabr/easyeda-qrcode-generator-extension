@@ -118,12 +118,16 @@ $qrcode-size: 200px;
 
     &:hover {
       border: solid 1px rgba(0,0,0,0.3);
+
+      &.primary {
+        border: solid 1px rgba(0,0,0,0.3);
+      }
     }
 
     &.primary {
       background-color: $primary-color;
       color: white;
-      border: none;
+      border: solid 1px transparent;
       width: 78px;
     }
 
