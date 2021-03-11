@@ -1,6 +1,8 @@
 ![Hero](docs/github-hero-logo.png?raw=true "Logo")
 ===========
 
+QR Code generator extension for [EasyEDA](https://easyeda.com/) and [LCEDA: Standard Edition](https://lceda.cn/standard).
+
 ## Installation
 
 1. Download [easyeda-qrcode-generator-v1.0.1.zip](https://github.com/turbobabr/easyeda-qrcode-generator-extension/releases/download/v1.0.1/easyeda-qrcode-generator-v1.0.1.zip)
