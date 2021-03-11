@@ -1,6 +1,5 @@
-# easyeda-extension-base-template
-
-intro description
+![Hero](docs/github-hero-logo.png?raw=true "Logo")
+===========
 
 ## Installation
 
@@ -10,9 +9,18 @@ intro description
 4. Click `Load Extension...` button and add all the files in from the extracted folder using `Select Files...` button. 
 5. Click `Load Extension` and close the `Extension Settings` dialog.
 
+![Installation](docs/easyeda-qrcode-installation.gif?raw=true)
+
 ## Usage
 
-usage description
+1. Click on `QRCode -> Generate` menu item.
+2. Enter code size by specifying certain unit via suffix - e.g. `10mm`, `1.1in`, `340mil`.
+3. Enter content - URL or any text.
+4. Hit the `Place` button and add generated code to the `PCB`.
+
+![Usage Demo](docs/easyeda-qrcode-usage.gif?raw=true)
+
+> NOTE: The code is placed on the currently selected layer, but it's possible to switch the destination layer later any moment.
 
 ## Feedback
 
