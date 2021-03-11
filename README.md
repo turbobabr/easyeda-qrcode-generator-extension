@@ -9,7 +9,7 @@
 4. Click `Load Extension...` button and add all the files in from the extracted folder using `Select Files...` button. 
 5. Click `Load Extension` and close the `Extension Settings` dialog.
 
-(screencast goes here)
+![Installation](docs/easyeda-qrcode-installation.gif?raw=true)
 
 ## Usage
 
@@ -18,7 +18,9 @@
 3. Enter content - URL or any text.
 4. Hit the `Place` button and add generated code to the `PCB`.
 
-(screencast goes here)
+![Usage Demo](docs/easyeda-qrcode-usage.gif?raw=true)
+
+> NOTE: The code is placed on the currently selected layer, but it's possible to switch the destination layer later any moment.
 
 ## Feedback
 
