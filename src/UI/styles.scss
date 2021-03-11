@@ -1,102 +1,135 @@
 
+$primary-color: #18A0FB;
+$text-input-border-color: rgba(0,0,0,0.1);
+
+$single-line-input-height: 30px;
+$code-text-input-height: 60px;
+$edge-padding: 15px;
+
+$base-width: 300px;
+$preview-height: $base-width - $edge-padding * 2;
+$qrcode-size: 200px;
+
+@mixin spread() {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .qrcode-ui-content {  
-  padding: 15px;
+  padding: $edge-padding 0px;
 
-  input {
-    width: 100%;
-    padding: 3px 10px;    
-    border-radius: 2px;
-    border: 1px solid rgba(0,0,0,0.1);
-    height: 30px;
-    margin-bottom: 8px;
-    &:focus {      
-      outline: none !important;
-      border-radius: 2px;
-      border: 2px solid #18A0FB;
-    }
+  .content-block {
+    padding: 0px $edge-padding;
   }
-
-  textarea {
+  
+  input, textarea {
     width: 100%;
-    height: 60px;
-    padding: 5px 10px;    
     border-radius: 2px;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid $text-input-border-color;
     &:focus {
       outline: none !important;
       border-radius: 2px;
-      border: 2px solid #18A0FB;
-    }
+      border: 2px solid $primary-color;
+      padding-left: 9px;
+    }    
+  }
+
+  input {    
+    padding: 3px 10px;        
+    height: $single-line-input-height;
+    margin-bottom: 8px;    
+
+    &:focus {      
+      padding-top: 3px;
+    }    
+  }
+
+  textarea {    
+    height: $code-text-input-height;
+    padding: 5px 10px;    
+
+    &:focus {      
+      padding-top: 4px;
+    }        
   }
 
   .preview {
     position: relative;
     width: 100%;
-    height: 323px;
+    height: $preview-height;
     background-color: transparent;    
     border: none;
     border-radius: 4px;
-    line-height: 323px;
+    line-height: $preview-height;
 
     font-size: 11px;
     color: #555555;
     text-align: center;
 
     .empty-state {
-      display: none;
-      
-      position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
+      display: block;      
+      @include spread();
     }
 
-    .svg-container {
-      position: absolute;
-      display: block;
-      
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
+    .svg-container {      
+      display: none;
+      @include spread();      
 
       svg {
         position: absolute;        
-        left: 54px;
-        top: 54px;
-        width: 214px;
-        height: 214px;
+        left: $preview-height / 2 - $qrcode-size / 2;
+        top: $preview-height / 2 - $qrcode-size / 2;
+        width: $qrcode-size;
+        height: $qrcode-size;
       }
     }    
   }
-}
 
+  .separator {
+    width: 100%;
+    height: 1px;
+    border-top: solid 1px #E5E5E5;
+    margin: 13px 0;      
+  }
 
-// This is awful, but... ¯\_(ツ)_/¯
-a[cmd^="dialog-close;qrcode-fake-close-cmd"] {  
-  background-color: rgba(0,0,0,0.01) !important;
-  color: #333 !important;  
-  border: solid 1px rgba(0,0,0,0.2) !important;
-  cursor: default;  
-  margin-right: 10px;
-  margin-left: 10px !important;
-  margin-top: 8px;
-  margin-bottom: 6px;
-}
+  .footer {    
+    padding: 0 $edge-padding;
+    display: flex;
+    justify-content: flex-end;
+  }
 
-a[cmd^="extension-qrcode-place;dialog-close"] {  
-  background-color: #18A0FB !important;
-  color: white !important;  
-  cursor: default;
-  margin-bottom: 6px;
+  .btn {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 40px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    padding: 0px 17px;
+    text-align: center;
+    background-color: white;
+    border: solid 1px rgba(0,0,0,0.2);
+    color: #333;
+    cursor: default;  
+    margin-left: 8px;
 
-  opacity: 0.4 !important;
-  
-  pointer-events: none !important;
-  &.force-enabled {
-    opacity: 1 !important;
-    pointer-events: all !important;    
+    &:hover {
+      border: solid 1px rgba(0,0,0,0.3);
+    }
+
+    &.primary {
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      width: 78px;
+    }
+
+    &.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
   }
 }
-

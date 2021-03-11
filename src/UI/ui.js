@@ -19,12 +19,12 @@ const isCurrentStateValid = () => {
 };
 
 const updatePlaceButton = () => {
-  const isValid = isCurrentStateValid();  
-  const el = $('a[cmd^="extension-qrcode-place;dialog-close"]');  
+  const isValid = isCurrentStateValid();      
+  const el = $('#qrcode-place-btn');
   if(isValid) {
-    el.addClass('force-enabled');          
+    el.removeClass('disabled');
   } else {      
-    el.removeClass('force-enabled');    
+    el.addClass('disabled');
   }    
 }
 
@@ -34,7 +34,7 @@ const updateQRCodePreview = (value) => {
   if(!isStringEmpty(value)) {
     emptyStateContainer.hide();
     svgContainer.show();
-    $('#qrcode-preview-path-el').attr("d",generatePath(value,214));      
+    $('#qrcode-preview-path-el').attr("d",generatePath(value,200));      
   } else {
     emptyStateContainer.show();
     svgContainer.hide();      
@@ -50,17 +50,10 @@ export const createSettingsDialog = (actionCommandId) => {
   const dlg = api('createDialog', {
     title: "QR Code Generator",
     content: Content,
-    width: 353,
+    width: 300,
     modal: false,
     collapsible: false,
-    resizable: false,
-    buttons: [{
-      text: 'Place',
-      cmd: [actionCommandId,'dialog-close'].join(';')
-    }, {
-      text: 'Cancel',
-      cmd: 'dialog-close;qrcode-fake-close-cmd'
-    }]
+    resizable: false,    
   });
 
   $('#qrcode-content-textarea').on('input',(e) => {  
