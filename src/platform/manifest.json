@@ -7,5 +7,22 @@
   "icons": {
 		"default": "icon.svg"
 	},		
-	"scripts": ["main.js" ]
+	"scripts": ["main.js" ],
+  "runner": {
+    "menu": {
+      "title": "QR Code",
+      "scope": "PCB",
+      "menu": [
+        {
+          "title": "Generate",
+          "command": "qrcode.generate"
+        },
+        "-",
+        {
+          "title": "Visit Github Page...",
+          "command": "qrcode.github"
+        }
+      ]
+    }
+  }
 }
